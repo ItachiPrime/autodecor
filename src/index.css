@@ -7,6 +7,24 @@
   body {
     @apply bg-primary text-foreground antialiased;
   }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  @supports (perspective: 1000px) {
+    .transform-gpu {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  video {
+    @apply max-w-none;
+  }
 }
 
 @layer utilities {
