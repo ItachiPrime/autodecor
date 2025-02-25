@@ -2,12 +2,45 @@
 import { Navigation } from "@/components/Navigation";
 import { ArrowRight, Star } from "lucide-react";
 import { useEffect, useRef } from "react";
+import Products from "@/components/Products";
 
+const products = 
+[
+  {
+    "id": 1,
+    "name": "Piston Business Card Holder",
+    "image": "/i (3).png",
+    "description": "A sleek card holder made from a real piston.",
+    "price": 299
+  },
+  {
+    "id": 2,
+    "name": "Clutch Pressure Plate Wall Clock",
+    "image": "/i (4).png",
+    "description": "A bold wall clock crafted from a clutch plate.",
+    "price": 249
+  },
+  {
+    "id": 3,
+    "name": "V6 Engine Block Table",
+    "image": "i (2).png",
+    "description": "A striking table built from a V6 engine block.",
+    "price": 99
+  },
+  {
+    "id": 4,
+    "name": "Tire Wall Clock",
+    "image": "i (1).png",
+    "description": "A unique wall clock made from a real tire.",
+    "price": 99
+  }
+]
+  
 const testimonials = [
   {
     name: "John D.",
     text: "The turbocharger lamp is a masterpiece! Perfect addition to my garage.",
-    rating: 5,
+    rating: 4,
   },
   {
     name: "Sarah M.",
@@ -18,6 +51,11 @@ const testimonials = [
 
 const Index = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const productsSectionRef = useRef(null);
+
+  const handleScrollToProducts = () => {
+    productsSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +85,7 @@ const Index = () => {
             className="absolute inset-0 w-full h-full object-cover"
             style={{ filter: 'brightness(0.4)' }}
           >
-            <source src="/engineering-bg.mp4" type="video/mp4" />
+            <source src="vid.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -66,11 +104,8 @@ const Index = () => {
               Reimagined
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-secondary mb-8 max-w-2xl mx-auto text-center [text-shadow:_0_2px_8px_rgb(0_0_0_/_50%)] animate-fade-in">
-            Handcrafted decor pieces made from upcycled car parts, where engineering meets artistry.
-          </p>
           <a 
-            href="/shop" 
+            onClick={handleScrollToProducts}
             className="inline-flex items-center px-8 py-4 bg-accent hover:bg-accent/90 text-white rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl animate-bounce-in"
           >
             Explore Collection
@@ -78,41 +113,9 @@ const Index = () => {
           </a>
         </div>
       </section>
-
-      {/* Featured Products with 3D effect */}
-      <section className="py-16 px-4 transform-gpu">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-secondary animate-fade-up">
-            Featured Creations
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <div 
-                key={item}
-                className="group bg-card rounded-lg overflow-hidden hover:shadow-metallic transition-all duration-500 animate-fade-up transform hover:scale-105 hover:-rotate-1"
-                style={{ 
-                  animationDelay: `${item * 100}ms`,
-                  transform: `perspective(1000px) rotateX(0deg)`,
-                }}
-              >
-                <div className="aspect-square bg-secondary/10 group-hover:bg-secondary/20 transition-colors duration-500"></div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-secondary">Turbocharger Lamp</h3>
-                  <p className="text-secondary/70 mb-4">
-                    Industrial elegance crafted from genuine turbocharger parts.
-                  </p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-accent font-semibold">$299</span>
-                    <button className="text-sm px-4 py-2 bg-secondary/10 hover:bg-secondary/20 rounded-full transition-all duration-300 hover:scale-105">
-                      View Details
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div ref={productsSectionRef}>
+        <Products products={products} />
+      </div>
 
       {/* Why Choose Us with Parallax */}
       <section className="relative py-16 px-4 bg-card/50 overflow-hidden">
@@ -173,8 +176,11 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-secondary/10">
         <div className="container mx-auto text-center text-secondary/60">
-          <p>&copy; 2024 AutoArt. All rights reserved.</p>
+          <p>&copy; 2025 AutoDecor. All rights reserved.</p>
         </div>
+        <div className="text-sm text-center text-gray-600 pt-4 pb-0">
+        Developed by <a href="https://github.com/ItachiPrime" className="text-red-600 font-semibold hover:text-red-500" target="blank">ItachiPrime</a>
+      </div>
       </footer>
     </div>
   );

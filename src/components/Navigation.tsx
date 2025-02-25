@@ -7,9 +7,9 @@ export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { name: "Shop", path: "/shop" },
-    { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
+    { name: "Shop", path: "/" },
+    { name: "About", path: "/" },
+    { name: "Contact", path: "/" },
   ];
 
   return (
@@ -17,7 +17,7 @@ export const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="text-2xl font-bold text-secondary hover:text-secondary/80 transition-colors">
-            AutoArt
+            AutoDecor
           </Link>
 
           {/* Desktop Menu */}
